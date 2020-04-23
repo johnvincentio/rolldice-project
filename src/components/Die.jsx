@@ -13,7 +13,7 @@ const MY_ICONS = [faDiceOne, faDiceTwo, faDiceThree, faDiceFour, faDiceFive, faD
 class Die extends React.Component {
 
 	render() {
-		console.log('App::render(); this.props ', this.props);
+		// console.log('App::render(); this.props ', this.props);
 		const { value, animate } = this.props;
 		const icon = MY_ICONS[value];
 

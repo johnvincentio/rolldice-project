@@ -12,39 +12,38 @@ class App extends React.Component {
 		this.state = {	
 			die1: 0,
 			die2: 0,
-			isRolling: false
+			rolling: false
 		};
 	}
 
 	rolldice = () => {
-		this.setState({ isRolling: true });
+		this.setState({ rolling: true });
 		setTimeout(this.rolling, 2000);
 	}
 
 	rolling = () => {
-		this.setState({ isRolling: false });
-		this.setState({ die1: random() });
-		this.setState({ die2: random() });
+		this.setState({ rolling: false });
+		this.setState({ die1: random(), die2: random() });
 	}
 
 	render() {
-		console.log('App::render(); this.state ', this.state);
-		const { isRolling } = this.state;
+		// console.log('App::render(); this.state ', this.state);
+		const { rolling } = this.state;
 
-		const buttonText = isRolling ? "Rolling..." : "Roll Dice!";
+		const buttonText = rolling ? "Rolling..." : "Roll Dice!";
 
 		return (
 			<>
 				<div className="app--die">
-					<Die value={this.state.die1} animate={isRolling} />
-					<Die value={this.state.die2} animate={isRolling} />
+					<Die value={this.state.die1} animate={rolling} />
+					<Die value={this.state.die2} animate={rolling} />
 				</div>
 				<div>
 					<button
 						type="button"
 						className="app--button"
 						onClick={this.rolldice}
-						disabled={isRolling}
+						disabled={rolling}
 					>
 						{buttonText} 
 					</button>
