@@ -9,20 +9,26 @@ import random from '../utilities/utils';
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			isRolling: false,
+		this.state = {	
 			die1: 0,
-			die2: 0
+			die2: 0,
+			isRolling: false
 		};
 	}
 
 	rolldice = () => {
+		this.setState({ isRolling: true });
+		setTimeout(this.rolling, 2000);
+	}
+
+	rolling = () => {
+		this.setState({ isRolling: false });
 		this.setState({ die1: random() });
 		this.setState({ die2: random() });
 	}
 
 	render() {
-		// console.log('App::render(); this.state ', this.state, ' this.props ', this.props);
+		console.log('App::render(); this.state ', this.state);
 		const { isRolling } = this.state;
 
 		const buttonText = isRolling ? "Rolling..." : "Roll Dice!";
@@ -30,11 +36,18 @@ class App extends React.Component {
 		return (
 			<>
 				<div className="app--die">
-					<Die value={this.state.die1} />
-					<Die value={this.state.die2} />
+					<Die value={this.state.die1} animate={isRolling} />
+					<Die value={this.state.die2} animate={isRolling} />
 				</div>
 				<div>
-					<button type="button" className="app--button" onClick={this.rolldice}>{buttonText}</button>
+					<button
+						type="button"
+						className="app--button"
+						onClick={this.rolldice}
+						disabled={isRolling}
+					>
+						{buttonText} 
+					</button>
 				</div>
 			</>
 		);
