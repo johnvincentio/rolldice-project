@@ -18,7 +18,7 @@ class Die extends React.Component {
 		const icon = MY_ICONS[value];
 
 		return (
-			<div className={`die ${animate ? "die--shake" : "" }`}>
+			<div className={`die ${animate ? "die--rolling" : "" }`}>
 				<FontAwesomeIcon icon={icon} size="5x" />
 			</div>
 		);
